@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W19 Task2</title>
+</head>
+<body>
+    <style>
+        body {
+            display: flex;
+            flex-direction: row;
+            padding: 25px;
+            justify-content: center;
+            background-image: url("https://abrakadabra.fun/uploads/posts/2022-02/1644374431_2-abrakadabra-fun-p-rozovii-fon-s-kotikami-2.jpg");
+        }
+       
+        input:required:valid {
+            border-color: green;
+        }
+        #container {
+            width: 30vw;
+            height: 90vh;
+            background-color: rgb(212, 132, 172);
+            color: rgb(45, 44, 46);
+            border-radius: 4px;
+            padding: 20px;
+            font-size: 18px;
+        }
+        
+        </style>
+    <body>
+        <div id="container">
+        <form>
+            <fieldset>
+        <legend>Данные владельца</legend>  
+        <label for="name">ФИО владельца</label>
+        <p><input type="text" id="name" required placeholder="name owner">*</p>
+    
+        <label for="kontacts">Телефон владельца</label>
+        <p><input type="tel" name="phone"  id="tel" placeholder=" your phone" pattern="\+?[0-9\s\-\(\)]+"
+            minlength="10" maxlength="20"/>+7(xxx)xxx-xx-xx</p>
+        
+        <label for="name">Ваш электронный адрес</label>
+        <p><input type="email" id="email" required placeholder="email">*</p>
+    </fieldset>
+        <p><h4>Порода питомца</h4></p>  
+        <select id="breedPet">
+        <option value="sfinks">сфинкс</option>
+        <option value="manchkin">манчкин</option>
+        <option value="siamskaya">сиамская кошка</option>
+        <option value="pers">персидская кошка</option>
+    </select>
+        <div>
+            <p><h4>Укажите пол питомца</h4></p>
+            <input type="radio" name="gender" id="radio" value="male"/> <span>Самец</span><br/>
+            <input type="radio" name="gender"  id="radio" value="female"/> <span>Самка</span><br/>
+    </div>
+            <h4>Выбрать корм </h4>
+            <input type="checkbox" id="foodPet" name="food1" value="1"/>
+            Сухой корм 
+            <input type="checkbox" id="foodPet" name="food2" value="2"/> 
+            Влажный корм 
+            <input type="checkbox" id="foodPet" name="food3" value="3"/>
+            Консервированный<br />
+                <hr>
+        Кличка вашего питомца:
+        <p>
+            <input type="text" id="namePet">
+        </p>
+        <p><button id="ok" >Сохранить</button></p>
+        </form>
+    </div>
+    <script>
+    class Cat {
+        constructor (breedPet,name,tel,email,radio,foodPet,namePet){
+            this.breedPet = breedPet;
+            this.name = name;
+            this.tel = tel;
+            this.email = email;
+            this.radio = radio;
+            this.foodPet = foodPet;
+            this.namePet = namePet;
+
+        }
+        }
+    let model =  new Cat (breedPet,name,tel,email, radio,foodPet,namePet);
+
+    ok.addEventListener('click',() =>{
+        event.preventDefault();
+        document.querySelector('select#breedPet').addEventListener('change', () => {
+        model.breedPet = (this).value;
+    });
+        const input = document.getElementById('name').value;
+    const input2 = document.getElementById('tel').value;
+    const input3 = document.getElementById('email').value;
+    const radiobutton=document.querySelectorAll('input[name="gender"]');
+    const checkbox1 = document.querySelector('input[name="food1"]');
+    const checkbox2= document.querySelector('input[name="food2"]');
+    const checkbox3 = document.querySelector('input[name="food3"]');
+    const input4 = document.getElementById('namePet').value;
+    model.name =input;
+    model.tel =input2;
+    model.email=input3;
+    model.namePet=input4;
+    if (checkbox1.checked){
+        model.foodPet=checkbox1.value;
+    }
+    if (checkbox2.checked){
+        model.foodPet = checkbox2.value;
+    }
+    if (checkbox3.checked){
+        model.foodPet= checkbox3.value;
+    }
+    for (let rad1 of radio){
+        if (rad1.checked) {
+        model.radio =rad1.value;
+        }
+    }
+    console.log(model);
+});
+    </script>
+</body>
+</html>
